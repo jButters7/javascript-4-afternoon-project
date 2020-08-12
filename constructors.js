@@ -15,6 +15,10 @@
 */
 
 // Code here
+function CarFactory(make, model){
+  this.make = make;
+  this.model = model;
+}
 
 ////////// PROBLEM 2 //////////
 
@@ -34,6 +38,8 @@ function Employee(name, email, hireDate) {
   */
   
   // Code here
+
+  const bob = new Employee('Bob','bob@gmail.com', '01-02-98')
   
   ////////// PROBLEM 3 //////////
   
@@ -57,6 +63,18 @@ function Employee(name, email, hireDate) {
   */
   
   // Code here
+
+  function Car(make, model, year){
+    this.make = make;
+    this.model = model;
+    this.year = year;
+
+    this.moveCar = function(){
+      return 10
+    }
+  }
+
+  // console.log(prius)
   
   ////////// PROBLEM 4 //////////
   
@@ -69,13 +87,17 @@ function Employee(name, email, hireDate) {
     Change the rating property to become this new number and return the updated rating.
   */
   
+ // Code here
   function Movie(name, genre, rating) {
     this.name = name;
     this.genre = genre;
     this.rating = rating;
   }
+
+  Movie.prototype.changeRating = function(newRating){
+    return this.rating = (this.rating + newRating)/2;
+  }
   
-  // Code here
   
   ////////// PROBLEM 5 //////////
   
@@ -84,13 +106,47 @@ function Employee(name, email, hireDate) {
   // Once the User constructor function is created, write a prototype method for the User function. Name this method addSavedPost. It should take in three parameters: id (a number), title (a string) and rating (a number). Use these parameters to create a new object and add it to the savedPosts array. Make sure to name the properties the same as described previously (id, title, rating).
   
   // Code here
+
+  function User(name, age, email, savedPosts){
+    this.name = name;
+    this.age = age;
+    this.email = email;
+    this.savedPosts = [savedPosts];
+  }
   
-  ////////// PROBLEM 6 //////////
+  User.prototype.addSavedPost = function(id, title, rating){
+    const post = {
+      id : id,
+      title : title,
+      rating : rating}
+    this.savedPosts.push(post)
+  }
+
+  const Jake = new User('jake', '10', 'jjjgmail')
+  // console.log(Jake)
+
+  Jake.addSavedPost(33,'cool ride', 5)
+  console.log(Jake)
+
+
+// PROBLEM 6 //////////
   
   // You will be using the constructor function you just created in problem 5.
   // Write a prototype method for the User constructor function named removeSavedPost that will take in one number parameter representing the post id. Use this id to find and remove the matching object in the savedPosts array.
   
   // Code here
+  User.prototype.removeSavedPost = function(postId){
+    for(i = 0; i < this.savedPosts.length; i++){
+      for(j = 0; j < this.savedPosts[i].length; j++){
+        if(id === postId){
+          delete this.savedPosts[i]
+        }
+      }
+    }
+  }
+
+  Jake.removeSavedPost(33)
+  console.log(Jake)
   
   ////////// PROBLEM 7 //////////
   
