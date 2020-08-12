@@ -122,11 +122,14 @@ function Employee(name, email, hireDate) {
     this.savedPosts.push(post)
   }
 
-  const Jake = new User('jake', '10', 'jjjgmail')
-  // console.log(Jake)
+  // const Jake = new User('jake', '10', 'jjjgmail', NaN)
+  // // // console.log(Jake)
 
-  Jake.addSavedPost(33,'cool ride', 5)
-  console.log(Jake)
+  // Jake.addSavedPost(32,'eee', 4)
+  // Jake.addSavedPost(31,'zxcv', 2)
+  // Jake.addSavedPost(38,'bvgf', 1)
+  // Jake.addSavedPost(33,'qasdf', 3)
+  // console.log(Jake)
 
 
 // PROBLEM 6 //////////
@@ -135,18 +138,34 @@ function Employee(name, email, hireDate) {
   // Write a prototype method for the User constructor function named removeSavedPost that will take in one number parameter representing the post id. Use this id to find and remove the matching object in the savedPosts array.
   
   // Code here
+
+//   User.prototype.removeSavedPost = function(postId){
+//     console.log(this.savedPosts[1].id)
+//     if(this.savedPosts[1].id === postId){
+//       delete this.savedPosts[1]
+//   }
+// }
+//   Jake.removeSavedPost(33)
+//   console.log(Jake)
+
   User.prototype.removeSavedPost = function(postId){
+    // console.log(this)
+    // console.log(this.savedPosts.length)
     for(i = 0; i < this.savedPosts.length; i++){
-      for(j = 0; j < this.savedPosts[i].length; j++){
-        if(id === postId){
-          delete this.savedPosts[i]
-        }
-      }
+      if(this.savedPosts[i].id === postId)
+      delete this.savedPosts[i]
+      // for(j = 0; j < this.savedPosts[i][i].length; j++){
+      //   if(this.savedPosts[i][i].id === postId){
+      //     console.log(this.savedPosts[i][j])
+      //     delete this.savedPosts[i][j]
+      //   }
+      // }
     }
   }
+  
 
-  Jake.removeSavedPost(33)
-  console.log(Jake)
+  // Jake.removeSavedPost(33)
+  // console.log(Jake)
   
   ////////// PROBLEM 7 //////////
   
@@ -154,4 +173,13 @@ function Employee(name, email, hireDate) {
   // Write a prototype method for the User constructor function named changePostRating that will take in two number parameters. The first will be an id (a number) and the second will be the new rating (a number). Use the id to find the matching object in the savedPosts array. Once you find the matching object, update it's rating score with the new rating parameter.
   
   // Code here
+
+  User.prototype.changePostRating = function(idNumber, newRating){
+    this.savedPosts.map(function(element){
+      // console.log(element.id)
+      if(element.id === idNumber){
+       return element.rating === newRating
+      }
+    })
+  }
   
