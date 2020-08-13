@@ -70,7 +70,7 @@ function Employee(name, email, hireDate) {
     this.year = year;
 
     this.moveCar = function(){
-      return 10
+      return 10;
     }
   }
 
@@ -107,29 +107,26 @@ function Employee(name, email, hireDate) {
   
   // Code here
 
+
   function User(name, age, email, savedPosts){
     this.name = name;
     this.age = age;
     this.email = email;
-    this.savedPosts = [savedPosts];
+    if(Array.isArray(savedPosts) === false){
+      this.savedPosts = [];
+    } else{
+      this.savedPosts = savedPosts;
+    }
   }
   
   User.prototype.addSavedPost = function(id, title, rating){
     const post = {
       id : id,
       title : title,
-      rating : rating}
-    this.savedPosts.push(post)
+      rating : rating};
+    this.savedPosts.push(post);
   }
 
-  // const Jake = new User('jake', '10', 'jjjgmail', NaN)
-  // // // console.log(Jake)
-
-  // Jake.addSavedPost(32,'eee', 4)
-  // Jake.addSavedPost(31,'zxcv', 2)
-  // Jake.addSavedPost(38,'bvgf', 1)
-  // Jake.addSavedPost(33,'qasdf', 3)
-  // console.log(Jake)
 
 
 // PROBLEM 6 //////////
@@ -148,21 +145,15 @@ function Employee(name, email, hireDate) {
 //   Jake.removeSavedPost(33)
 //   console.log(Jake)
 
-  User.prototype.removeSavedPost = function(postId){
-    // console.log(this)
+  User.prototype.removeSavedPost = function(id){
+    console.log(this)
     // console.log(this.savedPosts.length)
     for(i = 0; i < this.savedPosts.length; i++){
-      if(this.savedPosts[i].id === postId)
-      delete this.savedPosts[i]
-      // for(j = 0; j < this.savedPosts[i][i].length; j++){
-      //   if(this.savedPosts[i][i].id === postId){
-      //     console.log(this.savedPosts[i][j])
-      //     delete this.savedPosts[i][j]
-      //   }
-      // }
+      if(this.savedPosts[i].id === id){
+        this.savedPosts.splice(i, 1);
+      }
     }
   }
-  
 
   // Jake.removeSavedPost(33)
   // console.log(Jake)
@@ -174,12 +165,13 @@ function Employee(name, email, hireDate) {
   
   // Code here
 
-  User.prototype.changePostRating = function(idNumber, newRating){
+  User.prototype.changePostRating = function(id, newRating){
     this.savedPosts.map(function(element){
       // console.log(element.id)
-      if(element.id === idNumber){
-       return element.rating === newRating
+      if(element.id === id){
+        element.rating = newRating;
       }
+      return element;
     })
   }
   
